@@ -20,6 +20,7 @@ class ApplicationController < Sinatra::Base
     #your code here
     user = User.new(username: params[:username], password: params[:password])
     if user.password != nil && user.username != "" 
+      user.balance = 0 
       user.save 
       redirect "/login"
     else 
@@ -56,6 +57,14 @@ class ApplicationController < Sinatra::Base
     session.clear
     redirect "/"
   end
+  
+  post '/deposit' do 
+    user = User.find(session[:user_id])
+    user.balance += params[:amount]
+    redirect "/account"
+  end 
+  
+  
 
   helpers do
     def logged_in?

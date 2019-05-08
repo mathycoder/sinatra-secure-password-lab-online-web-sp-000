@@ -1,5 +1,28 @@
-<h1>Welcome</h1>
+<h1>Welcome <%=current_user.username%></h1>
 
-<p>We are currently working on your account.</p>
+
+<h3>Your Balance: $<%=current_user.balance%></h3>
+
+<form method="POST" action="/deposit">
+  <h4>$<input type='text' name="amount"/>
+  <input type='submit' value='Make Deposit'/></h4>
+</form>
+
+<form method="POST" action="/withdrawal">
+  <h4>$<input type='text' name="amount"/>
+  <input type='submit' value='Make Withdrawal'/></h4>
+</form>
 
 <p><a href="/logout">Log Out</a></p>
+
+<!--
+  helpers do
+    def logged_in?
+      !!session[:user_id]
+    end
+
+    def current_user
+      User.find(session[:user_id])
+    end
+  end
+  -->
