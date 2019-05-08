@@ -67,7 +67,7 @@ class ApplicationController < Sinatra::Base
   
   post '/withdrawl' do 
     user = User.find(session[:user_id])
-    if user.balance >= params params[:amount].to_i
+    if user.balance >= params[:amount].to_i
       user.balance -= params[:amount].to_i
       user.save
     end 
